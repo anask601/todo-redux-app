@@ -7,11 +7,7 @@ const Header = () => {
         <div className="ml-5 heading">
           <h1 className="text-4xl font-bold h">My Todo's</h1>
         </div>
-        <div className="flex w-2/12 buttons justify-evenly">
-          <div className="p-3 text-white transition rounded-md shadow-md bg-stone-800 hover:-translate-y-1 hover:bg-stone-600 shadow-slate-600">
-            Add New Task
-          </div>
-        </div>
+        <div className="flex w-2/12 buttons justify-evenly"></div>
       </header>
     </div>
   );
