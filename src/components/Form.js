@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../store/todoSlice";
 import TaskList from "./Tasklist";
+import { fetchTodoData, sendTodoData } from "../store/todoActionCreators";
 
 const Form = () => {
   const [title, setTitle] = useState("");
-
+  const todo = useSelector((state) => state.todo);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodoData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(sendTodoData(todo));
+  }, [dispatch, todo]);
 
   const addTodoHandler = (event) => {
     event.preventDefault();
@@ -18,11 +27,6 @@ const Form = () => {
     );
     setTitle("");
   };
-
-  // useEffect(() => {
-  //   dispatch(fetchTodoData());
-  // }, [dispatch]);
-
   return (
     <div>
       <form
