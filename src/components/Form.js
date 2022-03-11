@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchTodoData, todoActions } from "../store/todoSlice";
+import { addTodo } from "../store/todoSlice";
+import TaskList from "./Tasklist";
 
 const Form = () => {
   const [title, setTitle] = useState("");
@@ -9,11 +10,18 @@ const Form = () => {
 
   const addTodoHandler = (event) => {
     event.preventDefault();
-    dispatch(todoActions.addTodo(title));
+    dispatch(
+      addTodo({
+        id: Math.random().toString(),
+        title: title,
+      })
+    );
+    setTitle("");
   };
-  useEffect(() => {
-    dispatch(fetchTodoData());
-  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(fetchTodoData());
+  // }, [dispatch]);
 
   return (
     <div>
@@ -37,6 +45,7 @@ const Form = () => {
           </button>
         </div>
       </form>
+      <TaskList />
     </div>
   );
 };
